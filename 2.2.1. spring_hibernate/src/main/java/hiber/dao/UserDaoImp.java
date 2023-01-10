@@ -20,13 +20,11 @@ public class UserDaoImp implements UserDao {
         this.sessionFactory = sessionFactory;
     }
 
-    @Transactional
     @Override
     public void add(User user) {
         sessionFactory.getCurrentSession().save(user);
     }
 
-    @Transactional
     @Override
     public User getUserByCar(Car car) {
         String hql = "FROM User user where user.userCar.model = :model and user.userCar.series = :series";
@@ -36,7 +34,6 @@ public class UserDaoImp implements UserDao {
         return query.setMaxResults(1).getSingleResult();
     }
 
-    @Transactional
     @Override
     @SuppressWarnings("unchecked")
     public List<User> listUsers() {
